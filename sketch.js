@@ -60,9 +60,9 @@ function drawBullet(x, y) {
   push();
   translate(x, y);
   fill(255, 255, 0);
-  rect(0, -2, 15, 4); // Main body (width increased from 10 to 15, height increased from 2 to 4)
-  rect(0, -4, 3, 8); // Middle extension (width increased from 2 to 3, height increased from 6 to 8)
-  rect(0, -7, 1.5, 14); // Outer extension (width increased from 1 to 1.5, height increased from 10 to 14)
+  rect(0, -3, 20, 6); // Main body (width increased from 15 to 20, height increased from 4 to 6)
+  rect(0, -6, 4, 12); // Middle extension (width increased from 3 to 4, height increased from 8 to 12)
+  rect(0, -10, 2, 20); // Outer extension (width increased from 1.5 to 2, height increased from 14 to 20)
   pop();
 }
 
