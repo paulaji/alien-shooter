@@ -56,10 +56,19 @@ function updateBullets() {
   }
 }
 
-function displayBullets() {
+function drawBullet(x, y) {
+  push();
+  translate(x, y);
   fill(255, 255, 0);
+  rect(0, -2, 15, 4); // Main body (width increased from 10 to 15, height increased from 2 to 4)
+  rect(0, -4, 3, 8); // Middle extension (width increased from 2 to 3, height increased from 6 to 8)
+  rect(0, -7, 1.5, 14); // Outer extension (width increased from 1 to 1.5, height increased from 10 to 14)
+  pop();
+}
+
+function displayBullets() {
   for (let bullet of bullets) {
-    ellipse(bullet.x, bullet.y, 10, 10);
+    drawBullet(bullet.x, bullet.y);
   }
 }
 
@@ -114,7 +123,6 @@ function handleSpawning() {
 }
 
 function spawnEnemy() {
-  let enemyX = width;
-  let enemyY = random(height);
-  enemies.push({ x: enemyX, y: enemyY });
+  let enemyY = random(30, height - 30);
+  enemies.push({ x: width, y: enemyY });
 }
