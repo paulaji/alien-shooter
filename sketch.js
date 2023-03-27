@@ -4,6 +4,8 @@ let enemies = [];
 let score = 0;
 let spawnTimer = 0;
 let spawnInterval;
+let heartSize = 20;
+let heartBeat = 0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -21,7 +23,46 @@ function draw() {
   displayEnemies();
   checkCollisions();
   handleSpawning();
+
+  // Draw three hearts in the top right
+  noStroke();
+  fill(255, 0, 0);
+
+  // Pulse the hearts
+  heartSize = 20 + 5 * Math.sin(heartBeat);
+  heartBeat += 0.1;
+
+  let heartX = width - 80;
+  let heartY1 = height * 0.1;
+  let heartY2 = height * 0.2;
+  let heartY3 = height * 0.3;
+
+  drawHeart(heartX - 40, heartY1, heartSize);
+  drawHeart(heartX, heartY2, heartSize);
+  drawHeart(heartX + 40, heartY3, heartSize);
 }
+
+function drawHeart(x, y, size) {
+  beginShape();
+  vertex(x, y + size / 4);
+  bezierVertex(x, y - size / 2, x + size, y - size / 2, x + size, y + size / 4);
+  bezierVertex(x + size, y + size, x, y + size * 1.5, x, y + size / 4);
+  endShape(CLOSE);
+}
+
+// function drawHeart(x, y, size) {
+//   push();
+//   translate(x, y);
+//   scale(size / 20);
+
+//   beginShape();
+//   vertex(0, -15);
+//   bezierVertex(-10, -25, -20, -5, 0, 20);
+//   bezierVertex(20, -5, 10, -25, 0, -15);
+//   endShape(CLOSE);
+
+//   pop();
+// }
 
 function drawSpacecraft(x, y) {
   push();
